@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+
+<body >
+<div class="bg ">
+<nav class="navbar navbar-expand-lg navbar-light mb-3" >
+  <fa-icon [icon]="faBook"></fa-icon>
+  <a class="navbar-brand ml-3" [routerLink]="'.'">Librairie</a>
+
+  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    &#9776;
+  </button>
+
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="'authentication'" (click)="isMenuCollapsed = true" *ngIf="!currentUser">Connection</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="'bookList'" (click)="isMenuCollapsed = true" *ngIf="currentUser">Livres</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'memberList'" (click)="isMenuCollapsed = true" *ngIf="currentUser">Membres</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'myBooking'" (click)="isMenuCollapsed = true" *ngIf="currentUser">Espace Personnel</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'adminSpace'" (click)="isMenuCollapsed = true" *ngIf="currentUser && currentUser.admin === true">Espace Administrateur</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" [routerLink]="'authentication'"(click)="logout()" *ngIf="currentUser">Deconnexion</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container" >
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
+</body>
+
+</html>
+
+
+
+
+
+

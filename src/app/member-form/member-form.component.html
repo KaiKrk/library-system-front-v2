@@ -1,0 +1,24 @@
+<div class="card mt-5" >
+  <div class="card-header">Inscription</div>
+  <div class="card-body">
+<form [formGroup]="memberForm" (ngSubmit)="onSubmitForm()">
+  <div class="form-group">
+    <label for="surname">Nom de Famille</label>
+    <input type="text" class="form-control" id="surname" formControlName="surname">
+  </div>
+  <div class="form-group">
+    <label for="name">Prenom</label>
+    <input type="text" class="form-control" id="name" formControlName="name">
+  </div>
+  <label for="email">Email</label>
+  <div class="form-group">
+    <input type="text" class="form-control" id="email" formControlName="email">
+  </div>
+  <div class="form-group">
+    <label for="password">Mot de Passe</label>
+    <input type="text" class="form-control" id="password" formControlName="password">
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="memberForm.invalid">Soumettre</button>
+</form>
+  </div>
+</div>
