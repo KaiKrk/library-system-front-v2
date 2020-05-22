@@ -22,9 +22,9 @@ export class BookService {
   // this.emitBookSubject();
   }
 
-  getBooks() {
+  getBooks(memberId: number) {
     this.httpClient
-      .get<any[]>(this.endpoint + '/books')
+      .post<any[]>(this.endpoint + '/books', {memberId})
       .subscribe(
         (response) => {
           this.books = response;

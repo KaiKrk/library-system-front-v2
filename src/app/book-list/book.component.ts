@@ -17,7 +17,7 @@ export class BookComponent implements OnInit {
 
   currentUser = this.authenticationService.currentUserValue;
   ngOnInit() {
-    this.bookService.getBooks();
+    this.bookService.getBooks(this.currentUser.id);
     this.booksSubscription = this.bookService.bookSubject.subscribe(
       (books: any[]) => {
         this.books = books;
