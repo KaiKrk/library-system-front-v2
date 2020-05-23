@@ -26,7 +26,9 @@
       <div *ngIf="book.copies > 0">
         <a class="btn btn-warning mt-1" [routerLink]="['../bookingForm', book.id, book.name]" >Reserver</a>
       </div>
-
+      <div *ngIf="book.copies == 0">
+        <a class="btn btn-info mt-1" [routerLink]="['../waitingLine', book.name, book.id]" >File D'attente</a>
+      </div>
    </td>
   </tr>
   </tbody>

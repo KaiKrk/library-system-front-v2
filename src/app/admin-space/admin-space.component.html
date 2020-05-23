@@ -3,36 +3,67 @@
   <div class="card-body">
     <a class="btn btn-success" [routerLink]="'../bookForm'">Ajouter un Livre</a>
   </div>
-  <div class="card-header">Toutes Les Reservations</div>
-  <div class="card-body">
-    <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th scope="col">Numero de Reservation</th>
-        <th scope="col">Nom du Livre</th>
-        <th scope="col">Auteur</th>
-        <th scope="col">Categorie</th>
-        <th scope="col">Date D'emprunt</th>
-        <th scope="col">Date de Retour</th>
-        <th scope="col">Renouvelable</th>
-        <th scope="col">Statut de la Reservation</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let booking of bookings">
-        <td>{{booking.id}}</td>
-        <td>{{booking.book.name}}</td>
-        <td>{{booking.book.author}}</td>
-        <td>{{booking.book.category}}</td>
-        <td>{{booking.borrowingDate}}</td>
-        <td>{{booking.returnDate}}</td>
-        <td *ngIf="booking.renewable === true"><fa-icon [icon]="faCheck"></fa-icon></td>
-        <td *ngIf="booking.renewable === false"><fa-icon [icon]="faTimes"></fa-icon> </td>
-        <td>{{booking.status}}</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="card-header">Actions</div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mt-2 tab-card">
+          <div class="card-header tab-card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">Reservations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false">Pickup</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+              <h5 class="card-title">Reservation</h5>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th scope="col">Numero de Reservation</th>
+                      <th scope="col">Nom du Livre</th>
+                      <th scope="col">Auteur</th>
+                      <th scope="col">Categorie</th>
+                      <th scope="col">Date D'emprunt</th>
+                      <th scope="col">Date de Retour</th>
+                      <th scope="col">Renouvelable</th>
+                      <th scope="col">Statut de la Reservation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let booking of bookings">
+                      <td>{{booking.id}}</td>
+                      <td>{{booking.book.name}}</td>
+                      <td>{{booking.book.author}}</td>
+                      <td>{{booking.book.category}}</td>
+                      <td>{{booking.borrowingDate}}</td>
+                      <td>{{booking.returnDate}}</td>
+                      <td *ngIf="booking.renewable === true"><fa-icon [icon]="faCheck"></fa-icon></td>
+                      <td *ngIf="booking.renewable === false"><fa-icon [icon]="faTimes"></fa-icon> </td>
+                      <td>{{booking.status}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+              <h5 class="card-title">Pickup</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

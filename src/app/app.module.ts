@@ -28,6 +28,8 @@ import {WelcomeComponent} from './welcome/welcome.component';
 import { AdminSpaceComponent } from './admin-space/admin-space.component';
 import {AuthGuard} from './services/auth-guard.service';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
+import { WaitingLineComponent } from './waiting-line/waiting-line.component';
+import {WaitingPickupService} from './services/waiting-pickup.service';
 
 const appRoutes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
   {path: 'memberForm', component: MemberFormComponent},
   {path: 'memberList', canActivate: [AuthGuard], component: MemberListComponent},
   {path: 'authentication', component: AuthenticationComponent},
-  {path: 'adminSpace', canActivate: [AuthGuard], component: AdminSpaceComponent}
+  {path: 'adminSpace', canActivate: [AuthGuard], component: AdminSpaceComponent},
+  {path: 'waitingLine/:bookName', canActivate: [AuthGuard], component: WaitingLineComponent}
 ];
 
 @NgModule({
@@ -53,6 +56,7 @@ const appRoutes: Routes = [
     AuthenticationComponent,
     WelcomeComponent,
     AdminSpaceComponent,
+    WaitingLineComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
   ],
   providers: [BookService, MemberService, BookingService, AuthService, AuthGuard,
-    HttpClient,
+    HttpClient, WaitingPickupService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
