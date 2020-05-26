@@ -2,7 +2,8 @@
   <div class="card-header">File d'attente</div>
   <div class="card-body">
     <p>File d'attente du livre : {{bookName}} </p>
-    <p></p>
+    <h3>{{waitingPosition.position}}/{{waitingPosition.maxSize}}</h3>
+    <p>Date du prochain retour de ce livre : {{waitingPosition.closestReturnDate}}</p>
     <form [formGroup]="waitingLineForm" (ngSubmit)="onSubmitForm()">
       <div class="form-group">
         <input type="text" class="form-control" id="book" formControlName="book" readonly hidden>
@@ -10,7 +11,7 @@
       <div class="form-group">
         <input type="text" class="form-control" id="member" formControlName="member" readonly hidden>
       </div>
-      <button class="btn border-light btn-success"  type="submit" [disabled]="waitingLineForm.invalid">Entrer dans la file d'attente</button>
+      <button class="btn border-light btn-success"  type="submit" [disabled]="waitingLineForm.invalid" [disabled]="waitingPosition.position >= waitingPosition.maxSize">Entrer dans la file d'attente</button>
     </form>
   </div>
 </div>

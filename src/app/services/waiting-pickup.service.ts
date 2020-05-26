@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment.prod';
 import {WaitingLine} from '../models/waiting-line.model';
 import {Subject} from 'rxjs';
+import {WaitingPosition} from '../models/waiting-postion.model';
 
 @Injectable()
 export class WaitingPickupService {
@@ -11,16 +12,19 @@ export class WaitingPickupService {
   endpoint: string =  environment.APIEndpoint;
   constructor(private httpClient: HttpClient) {
   }
-  private waitingPosition = [];
-  waitingPostionSubject = new Subject<any[]>();
+  waitingPosition: WaitingPosition;
+  waitingPostionSubject = new Subject<WaitingPosition>();
 
+  waitingPostionObservable() {
+    return this.waitingPostionSubject.asObservable();
+  }
   emitWaitingPositionSubject() {
-    this.waitingPostionSubject.next(this.waitingPosition.slice());
+    this.waitingPostionSubject.next(this.waitingPosition);
   }
 
   getWaitingLineForBook(bookId: number) {
     this.httpClient
-      .post<any[]>(this.endpoint + '/waitingLinePosition', {bookId} )
+      .post<WaitingPosition>(this.endpoint + '/waitingLinePosition', {bookId} )
       .subscribe(
         (response) => {
           this.waitingPosition = response;

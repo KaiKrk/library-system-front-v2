@@ -1,4 +1,5 @@
-export interface WaitingPosition {
-  waitingPostion: number;
-  maxSizeWaitingList: number;
+export class WaitingPosition {
+  position: number;
+  maxSize: number;
+  closestReturnDate: Date;
 }

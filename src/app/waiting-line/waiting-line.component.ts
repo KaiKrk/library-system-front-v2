@@ -4,6 +4,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {WaitingPickupService} from '../services/waiting-pickup.service';
 import {WaitingLine} from '../models/waiting-line.model';
+import {any} from 'codelyzer/util/function';
+import {Subscription} from 'rxjs';
+import {WaitingPosition} from '../models/waiting-postion.model';
 
 @Component({
   selector: 'app-waiting-line',
@@ -22,15 +25,21 @@ export class WaitingLineComponent implements OnInit {
   public bookName: string;
   public memberId: number;
   public bookId: string;
-  public positionInWaitingLine: number;
-  public waitingLineMaxSize: number;
+  waitingPosition: WaitingPosition;
+  waitingPositionSubscription: Subscription;
+  currentUser = this.authService.currentUserValue;
 
-  private
   ngOnInit(): void {
     this.bookName = this.activeRoute.snapshot.paramMap.get('bookName');
     this.bookId  = this.activeRoute.snapshot.paramMap.get('bookId');
+    this.memberId = this.currentUser.id;
     this.initForm();
     this.getWaitingLine();
+    this.waitingPositionSubscription = this.waitingPikcupService.waitingPostionObservable().subscribe(
+      (waitingPosition: WaitingPosition) => {
+        this.waitingPosition = waitingPosition;
+    }
+    );
   }
 
   getWaitingLine() {
@@ -41,11 +50,13 @@ export class WaitingLineComponent implements OnInit {
     this.waitingLineForm = this.formBuilder.group(
       {
         book : [this.bookName, Validators.required],
+        member : [this.memberId, Validators.required]
       }
     );
   }
   onSubmitForm() {
     const formValue =  this.waitingLineForm.value;
+    console.log(formValue);
     const newMemberInWaitingLine: WaitingLine = {
       bookId: formValue.book,
       memberId: formValue.member

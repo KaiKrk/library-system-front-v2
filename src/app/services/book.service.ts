@@ -8,7 +8,6 @@ import {environment} from '../../environments/environment.prod';
 export class BookService {
 
   endpoint: string =  environment.APIEndpoint;
-  private book: Book[] = [];
   bookSubject = new Subject<any[]>();
 
   private books = [] ;
@@ -17,9 +16,7 @@ export class BookService {
     this.bookSubject.next(this.books.slice());
   }
   addBook(book: Book) {
-  // this.book.push(book);
   this.saveBooks(book);
-  // this.emitBookSubject();
   }
 
   getBooks(memberId: number) {

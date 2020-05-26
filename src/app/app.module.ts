@@ -41,7 +41,7 @@ const appRoutes: Routes = [
   {path: 'memberList', canActivate: [AuthGuard], component: MemberListComponent},
   {path: 'authentication', component: AuthenticationComponent},
   {path: 'adminSpace', canActivate: [AuthGuard], component: AdminSpaceComponent},
-  {path: 'waitingLine/:bookName', canActivate: [AuthGuard], component: WaitingLineComponent}
+  {path: 'waitingLine/:bookName/:bookId', canActivate: [AuthGuard], component: WaitingLineComponent}
 ];
 
 @NgModule({
