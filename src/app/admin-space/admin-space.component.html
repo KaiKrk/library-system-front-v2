@@ -57,8 +57,27 @@
             </div>
             <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
               <h5 class="card-title">Pickup</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th scope="col">Numero du Pickup</th>
+                    <th scope="col">Nom du Livre</th>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col">A Récuperer avant</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let pickup of pickups">
+                    <td>{{pickup.id}}</td>
+                    <td>{{pickup.book.name}}</td>
+                    <td>{{pickup.book.author}}</td>
+                    <td>{{pickup.book.category}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
           </div>

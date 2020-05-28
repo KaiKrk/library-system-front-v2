@@ -12,14 +12,22 @@ export class WaitingPickupService {
   endpoint: string =  environment.APIEndpoint;
   constructor(private httpClient: HttpClient) {
   }
+
+  private allPickup = [];
   waitingPosition: WaitingPosition;
   waitingPostionSubject = new Subject<WaitingPosition>();
+
+  allPickupSubscription = new Subject<any[]>();
 
   waitingPostionObservable() {
     return this.waitingPostionSubject.asObservable();
   }
   emitWaitingPositionSubject() {
     this.waitingPostionSubject.next(this.waitingPosition);
+  }
+
+  emitAllPickupSubject() {
+    this.allPickupSubscription.next(this.allPickup.slice());
   }
 
   getWaitingLineForBook(bookId: number) {
@@ -42,10 +50,24 @@ export class WaitingPickupService {
 
   saveInWaitingLine(waitingLine: WaitingLine) {
     this.httpClient
-      .post(this.endpoint + '/saveInWaitingList', waitingLine)
+      .post(this.endpoint + '/saveInWaitingLine', waitingLine)
       .subscribe(
         () => {
           console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+
+  getPickupList() {
+    this.httpClient
+      .get<any[]>(this.endpoint + '/activePickups')
+      .subscribe(
+        (response) => {
+          this.allPickup = response;
+          this.emitAllPickupSubject();
         },
         (error) => {
           console.log('Erreur ! : ' + error);
