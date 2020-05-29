@@ -24,7 +24,7 @@
         <a class="nav-link" [routerLink]="'memberList'" (click)="isMenuCollapsed = true" *ngIf="currentUser">Membres</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="'myBooking'" (click)="isMenuCollapsed = true" *ngIf="currentUser">Espace Personnel</a>
+        <a class="nav-link" [routerLink]="'myBooking'" (click)="isMenuCollapsed = true" *ngIf="currentUser && currentUser.admin === false">Espace Personnel</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="'adminSpace'" (click)="isMenuCollapsed = true" *ngIf="currentUser && currentUser.admin === true">Espace Administrateur</a>

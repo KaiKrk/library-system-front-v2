@@ -21,7 +21,7 @@ export class AdminSpaceComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
 
-  constructor(private bookingService: BookingService, private router: Router, private pickupService: WaitingPickupService) {
+  constructor(public bookingService: BookingService, private router: Router, public pickupService: WaitingPickupService) {
   }
 
   ngOnInit() {
@@ -37,6 +37,10 @@ export class AdminSpaceComponent implements OnInit {
         this.pickups = pickups;
       }
     );
+  }
+
+  endBooking() {
+
   }
 
 }

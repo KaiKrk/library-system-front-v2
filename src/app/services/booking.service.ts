@@ -10,7 +10,6 @@ export class BookingService {
 
   endpoint: string =  environment.APIEndpoint;
 
-  private booking: Booking[] = [];
   bookingSubject = new Subject<any[]>();
   allBookingsSubscription = new Subject<any[]>();
 
@@ -70,6 +69,19 @@ export class BookingService {
   }
 
   extendBooking(booking: Booking) {
+    this.httpClient
+      .post( this.endpoint + '/extendBooking', booking)
+      .subscribe(
+        () => {
+          console.log('Renouvellement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+
+  endBooking(booking: Booking) {
     this.httpClient
       .post( this.endpoint + '/extendBooking', booking)
       .subscribe(
