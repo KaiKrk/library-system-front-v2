@@ -32,5 +32,32 @@
   </tbody>
 </table>
   </div>
+    <div class="card-header">En Attente</div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Numero de Reservation</th>
+          <th scope="col">Nom du Livre</th>
+          <th scope="col">Auteur</th>
+          <th scope="col">Categorie</th>
+          <th scope="col">Date du Prochain Retour</th>
+          <th scope="col">Place dans la File</th>
+          <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let waitingLines of waitingLines">
+          <td>{{waitingLines.waitingLineId}}</td>
+          <td>{{waitingLines.book.name}}</td>
+          <td>{{waitingLines.book.author}}</td>
+          <td>{{waitingLines.book.category}}</td>
+          <td>{{waitingLines.closestReturnDate}}</td>
+          <td>{{waitingLines.placeInWaitingLine}}</td>
+          <td><button class="btn btn-danger" (click)="endReservation(waitingLines)" >Annuler la Reservation</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
