@@ -83,7 +83,7 @@ export class BookingService {
 
   endBooking(booking: Booking) {
     this.httpClient
-      .post( this.endpoint + '/extendBooking', booking)
+      .post( this.endpoint + '/endBooking', booking)
       .subscribe(
         () => {
           console.log('Renouvellement terminé !');

@@ -58,6 +58,7 @@ export class BookingPersonalComponent implements OnInit {
 
   endReservation(waitingLine: WaitingLineReservation) {
     this.waitingLineService.endReservation(waitingLine);
+    window.location.reload();
   }
 
 
