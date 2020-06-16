@@ -74,6 +74,8 @@ export class WaitingPickupService {
   }
 
   saveInWaitingLine(waitingLine: WaitingLine) {
+    console.log('nouveau waitingline');
+    console.log(waitingLine);
     this.httpClient
       .post(this.endpoint + '/saveInWaitingLine', waitingLine)
       .subscribe(

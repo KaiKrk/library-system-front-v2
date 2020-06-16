@@ -50,7 +50,7 @@
                       <td *ngIf="booking.renewable === true"><fa-icon [icon]="faCheck"></fa-icon></td>
                       <td *ngIf="booking.renewable === false"><fa-icon [icon]="faTimes"></fa-icon> </td>
                       <td>{{booking.status}}</td>
-                      <td><button class="btn btn-danger" (click)="bookingService.endBooking(booking)">Livre Rendu</button></td>
+                      <td><button *ngIf="booking.status != 'Terminee'" class="btn btn-danger" (click)="bookingService.endBooking(booking)">Livre Rendu</button></td>
                     </tr>
                     </tbody>
                   </table>

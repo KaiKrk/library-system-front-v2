@@ -24,14 +24,14 @@ export class WaitingLineComponent implements OnInit {
   waitingLineForm: FormGroup;
   public bookName: string;
   public memberId: number;
-  public bookId: string;
+  public bookId: number;
   waitingPosition: WaitingPosition;
   waitingPositionSubscription: Subscription;
   currentUser = this.authService.currentUserValue;
 
   ngOnInit(): void {
     this.bookName = this.activeRoute.snapshot.paramMap.get('bookName');
-    this.bookId  = this.activeRoute.snapshot.paramMap.get('bookId');
+    this.bookId  = Number(this.activeRoute.snapshot.paramMap.get('bookId'));
     this.memberId = this.currentUser.id;
     this.initForm();
     this.getWaitingLine();
@@ -58,7 +58,7 @@ export class WaitingLineComponent implements OnInit {
     const formValue =  this.waitingLineForm.value;
     console.log(formValue);
     const newMemberInWaitingLine: WaitingLine = {
-      bookId: formValue.book,
+      bookId: this.bookId,
       memberId: formValue.member
     };
     this.waitingPikcupService.addInWaitingLine(newMemberInWaitingLine);
